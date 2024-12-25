@@ -1,0 +1,40 @@
+# Node.js dependencies
+node_modules/
+
+# Truffle build artifacts
+build/
+
+# Local development environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ethereum network files
+*.log
+*.pid
+*.seed
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Truffle-specific files
+truffle-config.js
+truffle.js
+
+# Compiled contracts and caches
+contracts/*.json
+.cache/
+
+# IDE-specific files
+.idea/
+.vscode/
+
+# Others
+coverage/
+*.solcover
