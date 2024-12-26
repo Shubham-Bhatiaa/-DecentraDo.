@@ -1,24 +1,42 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-contract todoList{
-    uint public taskCount = 0;
+contract TodoList {
+  uint public taskCount = 0;
 
-    struct Task {
-        uint id;
-        string content;
-        bool completed;
-    }
+  struct Task {
+    uint id;
+    string content;
+    bool completed;
+  }
 
-   mapping(uint => Task) public tasks;
+  mapping(uint => Task) public tasks;
 
-   constructor() public {
-    createTask("check out this eth-todo-app");
-   }
+  event TaskCreated(
+    uint id,
+    string content,
+    bool completed
+  );
 
-   function createTask(string memory _content) public{
+  event TaskCompleted(
+    uint id,
+    bool completed
+  );
+
+  constructor() public {
+  }
+
+  function createTask(string memory _content) public {
     taskCount ++;
     tasks[taskCount] = Task(taskCount, _content, false);
-   }
+    emit TaskCreated(taskCount, _content, false);
+  }
+
+  function toggleCompleted(uint _id) public {
+    Task memory _task = tasks[_id];
+    _task.completed = !_task.completed;
+    tasks[_id] = _task;
+    emit TaskCompleted(_id, _task.completed);
+  }
 
 }
